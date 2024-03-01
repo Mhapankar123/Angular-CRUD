@@ -1,0 +1,8 @@
+{
+  "/flutter-json": {
+    "target": "https://showdigital.in",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel":"debug"
+  }
+}

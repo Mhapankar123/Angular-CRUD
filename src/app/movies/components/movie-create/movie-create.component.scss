@@ -1,0 +1,12 @@
+.image-wrapper {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  max-height: 20rem;
+  height: 20rem;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}

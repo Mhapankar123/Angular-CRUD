@@ -1,0 +1,12 @@
+<div class="movie-wrapper">
+  <ul class="movies-ul">
+    <li class="movies-li" *ngFor="let movie of movies" (click)="onEdit(movie)">
+      <div class="img-wrapper">
+        <img *ngIf="getImageUrl(movie)" src="{{apiPath + movie.img ||'assets/imageNotFound.png'}}" alt="Image Not Found" />
+        <img *ngIf="!getImageUrl(movie)" src="{{movie.img ||'assets/imageNotFound.png'}}" alt="Image Not Found" />
+      </div>
+      <h6>{{movie.title}}</h6>
+      <small>{{movie.year}}</small>
+    </li>
+  </ul>
+</div>

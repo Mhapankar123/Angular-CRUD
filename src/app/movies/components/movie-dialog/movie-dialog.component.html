@@ -1,0 +1,58 @@
+<div class="dialog-header">
+  <h6 class="bold m-0">{{movie.title}}</h6>
+  <div class="header-action">
+    <button mat-raised-button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <button mat-raised-button class="btn btn-primary" (click)="onSave()">Save</button>
+    <button mat-icon-button class="btn" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-dialog-content>
+  <div class="row" [formGroup]="form">
+    <div class="col-md-6">
+      <input type="file" single (change)="onSelectionChange($event)" />
+      <div class="img-wrapper" *ngIf="imageUrl">
+        <img src="{{imageUrl ||'assets/imageNotFound.png'}}" alt="Image Not Found" />
+     </div>
+      <div class="img-wrapper" *ngIf="!imageUrl">
+        <img *ngIf="getImageUrl(movie)" src="{{apiPath + movie.img ||'assets/imageNotFound.png'}}" alt="Image Not Found" />
+        <img *ngIf="!getImageUrl(movie)" src="{{movie.img ||'assets/imageNotFound.png'}}" alt="Image Not Found" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <mat-form-field class="col-md-6 col-12">
+          <mat-label>Title</mat-label>
+          <input formControlName="title" matInput>
+          <mat-error>{{getErrorMessage(f.title)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-12">
+          <mat-label>Month</mat-label>
+          <input formControlName="month" matInput>
+          <mat-error>{{getErrorMessage(f.month)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-12">
+          <mat-label>Runtime</mat-label>
+          <input formControlName="runtime" matInput>
+          <mat-error>{{getErrorMessage(f.runtime)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-12">
+          <mat-label>Year</mat-label>
+          <input formControlName="year" matInput>
+          <mat-error>{{getErrorMessage(f.year)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="desc" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+            [cdkAutosizeMinRows]="3"></textarea>
+          <mat-error>{{getErrorMessage(f.desc)}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
